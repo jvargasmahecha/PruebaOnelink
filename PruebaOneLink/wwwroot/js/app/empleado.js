@@ -11,6 +11,7 @@
             method: "GET",
             url: "http://localhost:4170/Empleado/Get"
         }).done(function (data) {
+            $('#tblEmpleado tr').remove();
             crearFilas(data); 
         }).fail(function () {
             alert("Algo salió mal");
@@ -34,5 +35,34 @@
         });
     }
     cargarEmpleados();
-    console.log("ready!");
+
+    $("#btnBuscar").click(function () {
+        var busqueda = $("#txtBusqueda").val();
+        if (busqueda == "") {
+            cargarEmpleados();
+        }
+        buscarEmpleados(busqueda);
+    });
+
+    function buscarEmpleados(busqueda)
+    {
+        var data = {Busqueda:busqueda};
+        $.ajax({
+            method: "POST",
+            contentType: "application/json; charset=utf-8",
+            url: "http://localhost:4170/Empleado/GetByDocumentoOrNombre",
+            data: JSON.stringify(data)
+        }).done(function (data) {
+            $('#tblEmpleado tr').remove();
+            crearFilas(data);
+        }).fail(function () {
+            alert("Algo salió mal");
+        });
+    }
+   
+    
+    $('#btnCancelar').click(function () {
+        $("#txtBusqueda").val("");
+        cargarEmpleados();       
+    });
 });

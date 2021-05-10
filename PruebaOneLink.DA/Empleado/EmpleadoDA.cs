@@ -145,5 +145,40 @@ namespace PruebaOneLink.DA.Empleado
 
         }
 
+        public IList<EmpleadoResultET> GetByDocumentoOrNombre(string busqueda)
+        {
+            List<EmpleadoResultET> result = new List<EmpleadoResultET>();
+
+            using (SqlConnection cnn = new SqlConnection(cadenaConn))
+            {
+                SqlCommand cmd = new SqlCommand("EmpleadoByDocumentoOrNombre_G", cnn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@pBusqueda", busqueda);
+                cnn.Open();
+                using (IDataReader dr = cmd.ExecuteReader())
+                {
+                    while (dr.Read())
+                    {
+                        EmpleadoResultET empleado = new EmpleadoResultET();
+                        empleado.EMId = Convert.ToInt32(dr["EMId"]);
+                        empleado.EMNombre = Convert.ToString(dr["EMNombre"]);
+                        empleado.EMApellido = Convert.ToString(dr["EMApellido"]);
+                        empleado.TDNombre = Convert.ToString(dr["TDNombre"]);
+                        empleado.EMDocumento = Convert.ToString(dr["EMDocumento"]);
+                        empleado.EMTipoDocumentoId = Convert.ToInt32(dr["EMTipoDocumentoId"]);
+                        empleado.SANombre = Convert.ToString(dr["SANombre"]);
+                        empleado.ARId = Convert.ToInt32(dr["ARId"]);
+                        empleado.ARNombre = Convert.ToString(dr["ARNombre"]);
+                        empleado.EMSubAreaId = Convert.ToInt32(dr["EMSubAreaId"]);
+                        empleado.EMFechaCrea = Convert.ToDateTime(dr["EMFechaCrea"]);
+                        if (dr["EMFechaEdicion"] != DBNull.Value)
+                            empleado.EMFechaEdicion = Convert.ToDateTime(dr["EMFechaEdicion"]);
+                        result.Add(empleado);
+                    }
+                }
+            }
+            return result;
+        }
+
     }
 }

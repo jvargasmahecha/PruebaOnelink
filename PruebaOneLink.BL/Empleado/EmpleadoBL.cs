@@ -18,6 +18,11 @@ namespace PruebaOneLink.BL.Empleado
             return empleadoDA.Get();
         }
 
+        public IList<EmpleadoResultET> GetByDocumentoOrNombre(string busqueda)
+        {
+            return empleadoDA.GetByDocumentoOrNombre(busqueda);
+        }
+
         public IList<EmpleadoET> GetByDocument(string documento)
         {
             return empleadoDA.GetByDocument(documento);

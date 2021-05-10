@@ -6,7 +6,18 @@
 <div id="empleadoIndex">
     <h2>Lista de Empleados</h2>
     <a class="btn btn-primary width-100 mt-5" href="~/Empleado/Create" role="button">Nuevo</a>
-    <br/>
+    <br />
+    <div class="form-row mt-5">
+        <div class="form-group col-md-8">
+            <input type="text" class="form-control" id="txtBusqueda" name="txtBusqueda" required placeholder="Buscar por Documento o Nombre">
+        </div>
+        <div class="form-group col-md-2">
+            <button type="button" id="btnBuscar" class="btn btn-primary width-100" style="width:100% !important">Buscar</button>
+        </div>
+        <div class="form-group col-md-2">
+            <button type="button" id="btnCancelar" class="btn btn-danger" style="width:100% !important">Cancelar</button>
+        </div>
+    </div>
     <table class="table">
         <thead>
             <tr>
@@ -17,6 +28,7 @@
                 <th scope="col">Tipo de Documento</th>
                 <th scope="col">Area</th>
                 <th scope="col">SubArea</th>
+                <th scope="col">Opciones</th>
             </tr>
         </thead>
         <tbody id="tblEmpleado">

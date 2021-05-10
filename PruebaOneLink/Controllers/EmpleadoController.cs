@@ -20,11 +20,7 @@ namespace PruebaOneLink.Controllers
         {
             return View();
         }
-
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
+           
 
         public ActionResult Create()
         {
@@ -70,6 +66,13 @@ namespace PruebaOneLink.Controllers
         public void Update([FromBody] EmpleadoET empleado)
         {
             empleadoBL.Actualizar(empleado);
+        }
+
+        [HttpPost]
+        public IEnumerable<EmpleadoResultET> GetByDocumentoOrNombre ([FromBody] OpcionesBusquedaET busqueda)
+        {
+            IList<EmpleadoResultET> result = empleadoBL.GetByDocumentoOrNombre(busqueda.Busqueda);
+            return result;
         }
     }
 }
