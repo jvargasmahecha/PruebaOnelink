@@ -1,0 +1,44 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<div id="empleadoEditar">
+    <h2>Editar empleado</h2>
+    <form id="frmEditarEmpleado" method="post">
+        <input type="hidden" class="form-control" readonly id="EMId" name="EMId">
+        <div class="form-row">
+            <div class="form-group col-md-3">
+                <label for="EMTipoDocumentoId">Tipo de Documento</label>
+                <select id="EMTipoDocumentoId" name="EMTipoDocumentoId" required class="form-control">
+                </select>
+            </div>
+            <div class="form-group col-md-3">
+                <label for="EMDocumento">Documento</label>
+                <input type="text" class="form-control" readonly id="EMDocumento" name="EMDocumento" required placeholder="Documento">
+            </div>
+            <div class="form-group col-md-3">
+                <label for="EMNombre">Nombre</label>
+                <input type="text" class="form-control" id="EMNombre" name="EMNombre" required placeholder="Nombre">
+            </div>
+            <div class="form-group col-md-3">
+                <label for="EMApellido">Apellido</label>
+                <input type="text" class="form-control" id="EMApellido" name="EMApellido" required placeholder="Apellido">
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="Area">Area</label>
+                <select id="Area" class="form-control" name="Area">
+                </select>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="EMSubAreaId">SubArea</label>
+                <select id="EMSubAreaId" class="form-control" required name="EMSubAreaId">
+                </select>
+            </div>
+        </div>
+        <button type="button" id="btnEditar" class="btn btn-primary width-100 mt-5">Editar</button>
+    </form>
+    <a class="btn btn-danger width-100 mt-5" href="~/Empleado/Index" role="button">Volver</a>
+</div>
